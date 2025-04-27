@@ -1,7 +1,20 @@
 ---
+import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
+import PostList from '../components/PostList.tsx';
+import { fetchPosts } from '../utils/api-requests';
+import Header from '@site/components/Header.astro';
+import HeaderContent from '@site/components/HeaderContent.astro';
+
+const result = await fetchPosts(1);
+const pageNum = result?.totalDocuments ? Math.ceil(result.totalDocuments / 10) : 0;
+
+const pageList = Array.from({ length: pageNum }, (_, index) => index + 1);
+const posts = result ? result.edges : [];
+const nextPage = result?.pageInfo.nextPage
+const previousPage = result?.pageInfo.previousPage
 ---
 
-<Layout>
-	
+<Layout title="Page 1 | Blog | Lijucay">
+	<PostList client:load posts={posts} currentPage={1} pageList={pageList} nextPage={nextPage} previousPage={previousPage}/>
 </Layout>

@@ -1,0 +1,21 @@
+---
+
+---
+
+<header id="sticky-header" class={`sticky z-60 top-0 bg-(--color-surface)`}>
+    <slot/>
+</header>
+
+<script>
+    const header = document.getElementById('sticky-header');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header?.classList.remove('bg-(--color-surface)');
+            header?.classList.add('bg-(--color-surface-container)');
+        } else {
+            header?.classList.add('bg-(--color-surface)');
+            header?.classList.remove('bg-(--color-surface-container)');
+        }
+    });
+</script>

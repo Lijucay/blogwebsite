@@ -1,0 +1,60 @@
+---
+import Header from '@site/components/Header.astro';
+import Layout from "@site/layouts/Layout.astro";
+import HeaderContent from '@site/components/HeaderContent.astro';
+import { fetchPosts, getBlogContent } from "@site/utils/api-requests";
+import '@site/styles/global.css'
+
+const { id } = Astro.params;
+const post = await getBlogContent(id);
+
+let postContent = "";
+
+if (post) {
+    postContent = post.content.html;
+}
+
+interface StaticPath {
+    params: {
+        id: string;
+    }
+}
+
+export async function getStaticPaths(): Promise<StaticPath[]> {
+    const result = await fetchPosts();
+
+    if (result) {
+        const totalPosts = result.totalDocuments;
+        const postsPerPage = 10;
+        const totalPages = Math.ceil(totalPosts / postsPerPage);
+
+        let paths: StaticPath[] = [];
+        for (let page = 1; page <= totalPages; page++) {
+            const posts = await fetchPosts(page);
+
+            if (posts) {
+                posts.edges.forEach(post => {
+                    paths.push({
+                        params: { id: post.node.id },
+                    });
+                });
+            };
+        }
+
+        return paths;
+    } else {
+        return [];
+    }
+}
+---
+
+<Layout title={`${post ? post.title : `Unknown`} | Blog | Lijucay`}>
+    {
+        post ? (
+            <article set:html={post.content.html} class="blog-entry max-w-[80%] mx-auto text-(--color-on-background)"/>
+            <div class="mb-8"></div>
+        ) : (
+            <div>content not found!</div>
+        )
+    }
+</Layout>
