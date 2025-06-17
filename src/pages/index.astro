@@ -1,0 +1,18 @@
+---
+import Layout from '@site/layouts/Layout.astro';
+import BlogCard from "../components/BlogCard";
+
+const posts = Object.values(import.meta.glob('./posts/**/*.md', { eager: true }))
+---
+
+<Layout title="Posts | Blog | Lijucay" showHeader={true}>
+    <div class="max-w-[85%] ms-auto me-auto mt-3 mb-3">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 mt-3">
+            {
+                posts.map((post: any) => (
+                        <BlogCard client:load image={post.frontmatter.image} title={post.frontmatter.title} description={post.frontmatter.description} url={post.url} tags={post.frontmatter.tags} publishedIn={post.frontmatter.in}/>
+                ))
+            }
+        </div>
+    </div>
+</Layout>
