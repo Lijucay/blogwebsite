@@ -1,0 +1,16 @@
+{
+  "name": "Lijucay's Blog",
+  "short_name": "Blog",
+  "description": "The official blog of anything related to Lijucay!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "../src/assets/brand/light/logo_icon.png",
+      "sizes": "250x250",
+      "type": "image/png"
+    }
+  ]
+}
