@@ -16,7 +16,7 @@ type BlogCardProps = {
 const BlogCard: React.FC<BlogCardProps> = ({ image, title, description, url, tags, publishedIn }) => {
     return (
         <div
-            onClick={handleClick}
+            onClick={() => {window.open(url, "_self")}}
             className="flex flex-col text-center cursor-pointer justify-center items-center rounded-3xl p-6 bg-(--color-primary-container) overflow-hidden transition-transform hover:scale-[1.01]"
         >
             {image && (
