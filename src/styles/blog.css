@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+[data-node-type=callout] {
+    @apply bg-(--color-tertiary-container) p-4 flex items-center rounded-2xl mb-5 text-(--color-tertiary-on-container)
+}
+
+[data-node-type=callout-text] {
+    @apply ms-3
+}
