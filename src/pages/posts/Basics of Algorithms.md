@@ -5,7 +5,7 @@ title: 'Basics of Algorithms'
 pubDate: 2024-04-02
 description: "Algorithms are the backbone of modern computing. Everything is powered by them, from search engines to social media feed. Yet, for many, the word \"algorithm\" can be a bit intimidating, so let's clarify the basics of algorithms."
 image:
-  url: '../src/assets/blog-covers/bits_and_beyond_1.webp'
+  url: '/assets/blog-covers/bits_and_beyond_1.webp'
   alt: 'A macbook with a window opened, showing lines of code, standing on a white desk.'
 author: 'Lijucay'
 tags: ["basics", "algorithms", "learning in public"]
