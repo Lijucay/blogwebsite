@@ -141,7 +141,7 @@ In this example:
 
 * <span class="inline-code">int[][]</span>: Indicates that <span class="inline-code">twoDArray</span> is a two-dimensional array of integers
 
-* <span class="inline-code">new int[3][3]</span>: Create a new 2D array with 3 rows and 3 columns
+* <span class="inline-code">new int\[3][3]</span>: Create a new 2D array with 3 rows and 3 columns
 
 
 #### Initializing values
