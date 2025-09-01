@@ -7,3 +7,23 @@
 [data-node-type=callout-text] {
     @apply ms-3
 }
+
+p>code::before {
+    content: none !important;
+}
+
+p>code::after {
+    content: none !important;
+}
+
+p>code {
+    @apply bg-(--color-primary-container) p-3 rounded-xl text-(--color-background)
+}
+
+.inline-code {
+    @apply bg-[#1E2939] p-2 rounded-lg font-bold text-sm
+}
+
+strong {
+    @apply text-(--color-on-background) font-extrabold
+}
