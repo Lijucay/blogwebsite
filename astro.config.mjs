@@ -19,8 +19,8 @@ export default defineConfig({
             [
                 rehypePrettyCode,
                 {
-                    theme: 'material-theme-ocean',
-                    keepBackground: false
+                    theme: 'catppuccin-macchiato',
+                    keepBackground: false,
                 }
             ]
         ],
