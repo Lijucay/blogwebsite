@@ -17,25 +17,19 @@ const allPosts = [
     <div class="max-w-[90%] ms-auto me-auto mt-3 mb-3">
         <!-- Filter Bar -->
         <div class="mb-6 mt-3">
-            <div class="flex gap-1 items-center justify-center overflow-x-auto scrollbar-hide whitespace-nowrap pl-8 py-1">
+            <div class="flex gap-[2px] items-center justify-center overflow-x-auto scrollbar-hide whitespace-nowrap py-1">
                 <button
                         class="hover:opacity-80 filter-btn rounded-l-[calc(1lh+--spacing(1.5))] rounded-r-[5px] px-4 py-2 transition-all duration-200 text-sm font-medium active shrink-0"
                         data-collection="all"
-                >
-                    All Posts
-                </button>
+                >All Posts</button>
                 <button
                         class="hover:opacity-80 filter-btn rounded-[5px] px-4 py-2 transition-all duration-200 text-sm font-medium shrink-0"
                         data-collection="Qwotable"
-                >
-                    Qwotable
-                </button>
+                >Qwotable</button>
                 <button
                         class="hover:opacity-80 filter-btn px-4 py-2 rounded-l-[5px] rounded-r-[calc(1lh+--spacing(1.5))] transition-all duration-200 text-sm font-medium shrink-0"
                         data-collection="Bits & Beyond"
-                >
-                    Bits & Beyond
-                </button>
+                >Bits & Beyond</button>
             </div>
         </div>
 
@@ -57,13 +51,13 @@ const allPosts = [
 
         <style>
             .filter-btn {
-                background-color: var(--color-primary-container);
-                color: var(--color-primary-on-container);
+                background-color: var(--color-surface-container-highest);
+                color: var(--color-on-surface-variant);
             }
 
             .filter-btn.active {
-                background-color: var(--color-tertiary-container);
-                color: var(--color-tertiary-on-container);
+                background-color: var(--color-primary);
+                color: var(--color-on-primary);
                 border-radius: 9999px;
             }
 

@@ -21,7 +21,7 @@ p>code {
 }
 
 .inline-code {
-    @apply bg-[#1E2939] p-2 rounded-lg font-bold text-sm
+    @apply bg-(--color-surface-container-highest) text-(--color-on-surface) p-2 rounded-lg font-bold text-sm
 }
 
 strong {

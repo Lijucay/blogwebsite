@@ -17,23 +17,23 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const date = new Date(post.data.pubDate).toLocaleDateString();
 ---
-
 <Layout title={post.data.title}>
     <meta charset="utf-8" />
     <div class="max-w-[85%] ms-auto me-auto">
         <div class="text-center mb-10">
             <h1 class="text-4xl font-extrabold">{post.data.title}</h1>
-            <h2 class="font-extrabold mt-4 text-2xl">Written by {post.data.author}</h2>
         </div>
 
         <img class="rounded-2xl lg:h-100 sm:h-50 w-screen object-cover" src={post.data.image.url} alt={post.data.image.alt}/>
 
+        <p class="text-center text-(--color-tertiary) mt-10 text-xl font-extrabold">{post.data.author} • {date}</p>
+
         <hr class="mt-10"/>
 
-        <div class="[&_p>strong]:text-(--color-on-background) [&_p>code]:text-(--color-on-background) prose-h1:text-(--color-on-background) prose-h2:text-(--color-on-background) prose-h3:text-(--color-on-background) prose-h4:text-(--color-on-background) prose-h5:text-(--color-on-background) prose-h6:text-(--color-on-background) prose-blockquote:text-(--color-tertiary-on-container) prose-blockquote:bg-(--color-tertiary-container) prose-blockquote:rounded-2xl prose-blockquote:ps-5 prose-blockquote:pe-3 [&_blockquote>p]:pt-2 [&_blockquote>p]:pb-2 [&_code>span]:pe-4 mt-10 mb-10 prose prose-pre:scrollbar-hide prose-pre:rounded-2xl prose-code:me-10 prose-blockquote:border-l-primary-on-container max-w-none bg-(--color-background) text-(--color-on-background) [&_[data-node-type=callout]]:bg-red-200)">
+        <div class="prose-a:text-(--color-on-background) [&_p>strong]:text-(--color-on-background) [&_p>code]:text-(--color-on-background) prose-h1:text-(--color-on-background) prose-h2:text-(--color-on-background) prose-h3:text-(--color-on-background) prose-h4:text-(--color-on-background) prose-h5:text-(--color-on-background) prose-h6:text-(--color-on-background) prose-blockquote:text-(--color-tertiary-on-container) prose-blockquote:bg-(--color-tertiary-container) prose-blockquote:rounded-2xl prose-blockquote:ps-5 prose-blockquote:pe-3 [&_blockquote>p]:pt-2 [&_blockquote>p]:pb-2 [&_code>span]:pe-4 mt-10 mb-10 prose prose-pre:scrollbar-hide prose-pre:rounded-2xl prose-code:me-10 prose-blockquote:border-l-primary-on-container max-w-none bg-(--color-background) text-(--color-on-background) [&_[data-node-type=callout]]:bg-red-200)">
             <Content />
         </div>
     </div>
-
 </Layout>

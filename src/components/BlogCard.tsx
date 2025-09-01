@@ -29,17 +29,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ klass, image, title, description, i
             </h1>
 
             <p className="text-(--color-primary-on-container)">{description}</p>
-
-            <div className="flex flex-wrap justify-center gap-2 mt-4">
-                {
-                    tags.map((tag, index) => (
-                        <div
-                            key={index}
-                            className="rounded-full px-4 py-1 text-sm bg-(--color-primary-on-container) font-medium text-(--color-primary-container)"
-                        >{tag}</div>
-                    ))
-                }
-            </div>
         </a>
     );
 };
