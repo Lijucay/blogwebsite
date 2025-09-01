@@ -9,7 +9,6 @@ image:
   alt: 'The banner for the Qwotable app, showing a blue rounded box with quotation marks and the text Qwotable next to it'
 author: 'Lijucay'
 tags: ["apps", "qwotable"]
-in: "Qwotable News"
 ---
 Today I want to share some important news with you: **the development of Qwotable has officially come to an end.**
 
