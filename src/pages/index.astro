@@ -2,17 +2,111 @@
 import Layout from '@site/layouts/Layout.astro';
 import BlogCard from "../components/BlogCard";
 
-const posts = Object.values(import.meta.glob('./posts/**/*.md', { eager: true }))
+import { getCollection } from 'astro:content';
+
+const qwotablePosts = await getCollection('qwotableEntries')
+const bitsAndBeyondPosts = await getCollection('bitsAndBeyondEntries')
+
+const allPosts = [
+    ...qwotablePosts.map(post => ({ ...post, collection: 'Qwotable' })),
+    ...bitsAndBeyondPosts.map(post => ({ ...post, collection: 'Bits & Beyond' })),
+];
 ---
 
 <Layout title="Posts | Blog | Lijucay" showHeader={true}>
-    <div class="max-w-[85%] ms-auto me-auto mt-3 mb-3">
+    <div class="max-w-[90%] ms-auto me-auto mt-3 mb-3">
+        <!-- Filter Bar -->
+        <div class="mb-6 mt-3">
+            <div class="flex gap-1 items-center justify-center overflow-x-auto scrollbar-hide whitespace-nowrap pl-8 py-1">
+                <button
+                        class="hover:opacity-80 filter-btn rounded-l-[calc(1lh+--spacing(1.5))] rounded-r-[5px] px-4 py-2 transition-all duration-200 text-sm font-medium active shrink-0"
+                        data-collection="all"
+                >
+                    All Posts
+                </button>
+                <button
+                        class="hover:opacity-80 filter-btn rounded-[5px] px-4 py-2 transition-all duration-200 text-sm font-medium shrink-0"
+                        data-collection="Qwotable"
+                >
+                    Qwotable
+                </button>
+                <button
+                        class="hover:opacity-80 filter-btn px-4 py-2 rounded-l-[5px] rounded-r-[calc(1lh+--spacing(1.5))] transition-all duration-200 text-sm font-medium shrink-0"
+                        data-collection="Bits & Beyond"
+                >
+                    Bits & Beyond
+                </button>
+            </div>
+        </div>
+
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 mt-3">
             {
-                posts.map((post: any) => (
-                        <BlogCard client:load image={post.frontmatter.image} title={post.frontmatter.title} description={post.frontmatter.description} url={post.url} tags={post.frontmatter.tags} publishedIn={post.frontmatter.in}/>
+                allPosts.map((post: any) => (
+                        <div class="blog-post-item h-full flex flex-col" data-collection={post.collection}>
+                            <BlogCard klass="flex-1" client:load id={post.id} image={post.data.image} title={post.data.title} description={post.data.description} url={post.url} tags={post.data.tags}/>
+                        </div>
                 ))
             }
         </div>
+
+        <!-- No posts message (initially hidden) -->
+        <div id="no-posts-message" class="text-center py-12 hidden">
+            <p class="text-gray-500 dark:text-gray-400">No posts found for the selected collection.</p>
+        </div>
     </div>
+
+        <style>
+            .filter-btn {
+                background-color: var(--color-primary-container);
+                color: var(--color-primary-on-container);
+            }
+
+            .filter-btn.active {
+                background-color: var(--color-tertiary-container);
+                color: var(--color-tertiary-on-container);
+                border-radius: 9999px;
+            }
+
+            .blog-post-item.hidden {
+                display: none;
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                const blogPosts = document.querySelectorAll('.blog-post-item');
+                const noPostsMessage = document.getElementById('no-posts-message');
+
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Remove active class from all buttons
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        // Add active class to clicked button
+                        button.classList.add('active')
+
+                        const selectedCollection = button.getAttribute('data-collection');
+                        let visibleCount = 0;
+
+                        blogPosts.forEach(post => {
+                            const postCollection = post.getAttribute('data-collection');
+
+                            if (selectedCollection === 'all' || postCollection === selectedCollection) {
+                                post.classList.remove('hidden');
+                                visibleCount++;
+                            } else {
+                                post.classList.add('hidden');
+                            }
+                        });
+
+                        // Show/hide no posts message
+                        if (visibleCount === 0) {
+                            noPostsMessage?.classList.remove('hidden');
+                        } else {
+                            noPostsMessage?.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        </script>
 </Layout>
