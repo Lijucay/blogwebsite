@@ -3,7 +3,8 @@ layout: ../../layouts/MarkdownPostLayout.astro
 
 title: 'Basics of Algorithms'
 pubDate: 2024-04-02
-description: "Algorithms are the backbone of modern computing. Everything is powered by them, from search engines to social media feed. Yet, for many, the word \"algorithm\" can be a bit intimidating, so let's clarify the basics of algorithms."
+description: "
+Learn what algorithms are, the key principles they follow, and how variables, loops, conditions, and methods work together to solve problems step-by-step."
 image:
   url: '/assets/blog-covers/bits_and_beyond_1.webp'
   alt: 'A macbook with a window opened, showing lines of code, standing on a white desk.'
